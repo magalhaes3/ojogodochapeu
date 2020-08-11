@@ -6,7 +6,11 @@ document.getElementById('submit_button').onclick = function() {
 
 document.getElementById('retirar_papel').onclick = function() {
     let retirar = document.getElementById('reposicao').checked;
-    socket.emit('papelAberto', retirar);
+    socket.emit('papelAberto', !retirar);
+}
+
+document.getElementById('trash_everything').onclick = function() {
+    socket.emit('apagarTudo');
 }
 
 function submeterPapel() {
@@ -28,6 +32,7 @@ function submeterPapel() {
 
         socket.emit('papelSubmetido', messageObject);
     }
+    document.getElementById('papel_escrito').value = "";
 }
 
 socket.on('papeisAnteriores', function(messages){
@@ -44,7 +49,9 @@ socket.on('papeisAnteriores', function(messages){
 
 socket.on('papelAberto', data => {
     if (data.user) {
-        alert(`O papel escolhido diz: ${data.papelEscolhido.texto}`);
+        document.getElementById('result_placeholder').outerHTML = `<div class="text-center alert alert-success" role="alert" id="result_placeholder">
+        O papel escolhido diz: <b>${data.papelEscolhido.texto}</b>
+        </div>`
     }
 
     document.getElementById('numero_de_papeis').innerHTML = data.listaPapeis.length;
@@ -73,6 +80,13 @@ socket.on('receivedMessage', function(numDePapeis) {
 socket.on('atualizarPapeisProprios', function(data){
     document.getElementById('label_lista_papeis').innerHTML = "Papeis submetidos por si:";
     document.getElementById('lista_papeis').innerHTML += `<li class=\"list-group-item\"> ${data.texto} </li>`
+})
+
+socket.on('apagarTudo', function() {
+    document.getElementById('label_lista_papeis').innerHTML = "";
+    document.getElementById('lista_papeis').innerHTML = "";
+    document.getElementById('numero_de_papeis').innerHTML = "0";
+    localStorage.setItem("papeis", JSON.stringify([]));
 })
 
 function renderMessage(message){

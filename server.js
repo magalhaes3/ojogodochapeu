@@ -46,6 +46,12 @@ io.on('connection', (socket) => {
         }
         socket.emit('papelAberto', {listaPapeis, papelEscolhido, retirado, user: true});
         socket.broadcast.emit('papelAberto', {listaPapeis, papelEscolhido, retirado});
+    });
+
+    socket.on('apagarTudo', () => {
+        listaPapeis = [];
+        socket.emit('apagarTudo');
+        socket.broadcast.emit('apagarTudo');
     })
 });
 
