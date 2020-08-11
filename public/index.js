@@ -34,6 +34,7 @@ socket.on('papeisAnteriores', function(messages){
     document.getElementById('numero_de_papeis').innerHTML = messages.length;
 
     if (localStorage.getItem("papeis") !== null) {
+        document.getElementById('label_lista_papeis').innerHTML = "Papeis submetidos por si:";
         let papeis = JSON.parse(localStorage.getItem("papeis"));
         papeis.forEach(papel => {
             renderMessage(papel);
@@ -58,6 +59,9 @@ socket.on('papelAberto', data => {
                 renderMessage(papel);
             });
             localStorage.setItem("papeis", JSON.stringify(papeisAtualizado));
+            if (papeisAtualizado.length <= 0) {
+                document.getElementById('label_lista_papeis').innerHTML = "";
+            }
         }
     }
 })
@@ -67,11 +71,12 @@ socket.on('receivedMessage', function(numDePapeis) {
 });
 
 socket.on('atualizarPapeisProprios', function(data){
-    document.getElementById('lista_papeis').innerHTML += `<li> ${data.texto} </li>`
+    document.getElementById('label_lista_papeis').innerHTML = "Papeis submetidos por si:";
+    document.getElementById('lista_papeis').innerHTML += `<li class=\"list-group-item\"> ${data.texto} </li>`
 })
 
 function renderMessage(message){
-    document.getElementById('lista_papeis').innerHTML += `<li> ${message.texto} </li>`;
+    document.getElementById('lista_papeis').innerHTML += `<li class=\"list-group-item\"> ${message.texto} </li>`;
     // if (message.aberto) {
     //     document.getElementById('lista_papeis').innerHTML += "<li>" + message.texto + "</li>";
     // } else {

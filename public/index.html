@@ -5,23 +5,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jogo do Chapéu</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
 </head>
 <body>
-    <h1>Hello Simps</h1>
-    <input type="text" id="papel_escrito">
-    <button id="submit_button">Submeter papel</button>
-   
-    <h4> Papeis submetidos por si: </h4>
-    <ul id="lista_papeis"></ul>
-
-    <h2> Número de papeis no chapéu: <br> </h2>
-    <h3 id="numero_de_papeis">0</h3>
-    
-    <label for="reposicao"> Queres que o papel seja reposto no chapéu depois de ser retirado? </label>
-    <input type="checkbox" name="reposicao" id="reposicao">
-
-    <button id="retirar_papel"> Retirar Papel! </button>
+    <div class="container">
+        <div class="text-center">
+            <img src="https://image.flaticon.com/icons/svg/3208/3208810.svg" alt="Fedora Logo" width="100">
+            <h1>Hello Simps</h1>
+        </div>
+                
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"> Papel a adicionar: </span>
+            </div>
+            <input type="text" id="papel_escrito" class="form-control">
+            <div class="input-group-append">
+                <button class="input-group-text btn btn-info" id="submit_button">Submeter papel</button>
+            </div>
+        </div>
+       
+        <br>
+        <h4 id="label_lista_papeis">  </h4>
+        <ul class="list-group" id="lista_papeis"></ul>
+        
+        <br>
+        <h2 class="text-center"> Número de papéis no chapéu: <br> </h2>
+        <h3 class="text-center" id="numero_de_papeis">0</h3>
+        <br>
+        
+        <div class="alert alert-secondary text-center">
+            <label for="reposicao"> Queres que o papel seja reposto no chapéu depois de ser retirado? </label>
+            <input type="checkbox" name="reposicao" id="reposicao" checked>
+            <br>
+            <button id="retirar_papel" class="btn btn-danger"> Retirar Papel! </button>
+        </div>
+        
+    </div>
     
     <script src="/socket.io/socket.io.js"></script>
     <script src="./index.js"></script>
