@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <link rel="shortcut icon" href="https://image.flaticon.com/icons/svg/3208/3208810.svg" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo do Chapéu</title>
+
+</head>
+<body>
+    <h1>Hello Simps</h1>
+    <input type="text" id="papel_escrito">
+    <button id="submit_button">Submeter papel</button>
+   
+    <h4> Papeis submetidos por si: </h4>
+    <ul id="lista_papeis"></ul>
+
+    <h2> Número de papeis no chapéu: <br> </h2>
+    <h3 id="numero_de_papeis">0</h3>
+    
+    <label for="reposicao"> Queres que o papel seja reposto no chapéu depois de ser retirado? </label>
+    <input type="checkbox" name="reposicao" id="reposicao">
+
+    <button id="retirar_papel"> Retirar Papel! </button>
+    
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./index.js"></script>
+    
+</body>
+</html>
